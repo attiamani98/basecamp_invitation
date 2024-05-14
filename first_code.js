@@ -42,12 +42,21 @@ async function updateAirtableRecord(recordId, basecampId) {
         };
         data = {
             fields: {
-                'Basecamp ID': basecampId
+                'fldzTnUkzyvciRPzy': basecampId
             }
         };
+        // Define request headers
 
+        
+        // Send the PATCH request using axios
+        axios.patch(url, data, { headers })
+            .then(response => {
+            console.log('Record updated successfully:', response.data);
+            })
+            .catch(error => {
+            console.error('Error updating record:', error.response.data);
+            });
         // Make a PATCH request to update the record
-        const response = await axios.patch(endpoint, data, { headers });
         console.log('Airtable record updated successfully with Basecamp ID:', basecampId);
         console.log('Response:', response.data);
     } catch (error) {
